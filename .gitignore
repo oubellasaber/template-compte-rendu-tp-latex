@@ -1,0 +1,23 @@
+# --- Fichiers générés à la compilation (ne jamais versionner) ---
+*.aux
+*.log
+*.toc
+*.lof
+*.lot
+*.out
+*.synctex.gz
+*.synctex(busy)
+*.bcf
+*.run.xml
+*.fls
+*.fdb_latexmk
+*.nav
+*.snm
+*.vrb
+
+# --- Dossiers système ---
+Thumbs.db
+.DS_Store
+
+# --- Build ---
+build/

@@ -1,0 +1,90 @@
+% =====================================================================
+%  PARTIE I : exemple d'exercice avec du code Python
+% =====================================================================
+\chapter{Prise en main de Python et structures de contrôle}
+
+\section{Énoncé de l'exercice}
+
+\begin{remarque}[Consigne]
+Écrire un programme Python qui calcule la moyenne d'une liste de notes, puis
+affiche la mention correspondante en utilisant la structure conditionnelle
+\codeinline{if / elif / else}.
+\end{remarque}
+
+Le programme doit demander à l'utilisateur de saisir les notes, calculer la
+moyenne et afficher un message indiquant si l'étudiant est admis.
+
+\section{Démarche et implémentation}
+
+Nous définissons d'abord une fonction \codeinline{moyenne} qui prend une liste
+en paramètre et renvoie sa moyenne. La fonction \codeinline{mention} associe
+ensuite une mention à la moyenne obtenue.
+
+\begin{code}[language=Python]{notes.py}
+# Calcul d'une moyenne et affichage de la mention associee
+
+def moyenne(notes):
+    """Retourne la moyenne d'une liste de notes."""
+    if not notes:
+        return 0.0
+    return sum(notes) / len(notes)
+
+
+def mention(moy):
+    """Retourne la mention correspondant a une moyenne."""
+    if moy >= 16:
+        return "Tres bien"
+    elif moy >= 14:
+        return "Bien"
+    elif moy >= 12:
+        return "Assez bien"
+    elif moy >= 10:
+        return "Admis"
+    else:
+        return "Ajourne"
+
+
+if __name__ == "__main__":
+    notes = [15.5, 12.0, 17.0, 9.5]
+    moy = moyenne(notes)
+    print(f"Moyenne : {moy:.2f}")
+    print(f"Mention : {mention(moy)}")
+\end{code}
+
+\section{Résultats et interprétation}
+
+L'exécution du programme dans le terminal produit la sortie suivante.
+
+\begin{terminal}
+$ python notes.py
+Moyenne : 13.50
+Mention : Assez bien
+\end{terminal}
+
+La moyenne calculée vaut \textbf{13{,}50}, ce qui correspond à la mention
+«~Assez bien~». Le test de la fonction \codeinline{mention} avec différentes
+valeurs permet de vérifier que chaque branche conditionnelle renvoie la
+mention attendue (voir Tableau~\ref{tab:mentions}).
+
+\begin{table}[h]
+  \centering
+  \begin{tabularx}{0.75\linewidth}{@{}Xc@{}}
+    \toprule
+    \textbf{Intervalle de la moyenne} & \textbf{Mention} \\
+    \midrule
+    $[16~;~20]$   & Très bien  \\
+    $[14~;~16[$   & Bien       \\
+    $[12~;~14[$   & Assez bien \\
+    $[10~;~12[$   & Admis      \\
+    $[0~;~10[$    & Ajourné    \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Correspondance entre moyenne et mention.}
+  \label{tab:mentions}
+\end{table}
+
+\begin{remarque}[Interprétation]
+Le programme respecte la consigne. On remarque que l'absence de notes est
+gérée par le cas de base \codeinline{not notes} afin d'éviter une division par
+zéro. Toutes les valeurs limites ont été testées.
+\end{remarque}

@@ -1,0 +1,89 @@
+% =====================================================================
+%  PARTIE II : exemple multi-langages (C, SQL) + figure
+% =====================================================================
+\chapter{Tri d'un tableau et interrogation d'une base de données}
+
+\section{Énoncé de l'exercice}
+
+\begin{remarque}[Consigne]
+Écrire un programme C qui trie un tableau d'entiers par la méthode du tri à
+bulles, puis une requête SQL qui sélectionne les employés dont le salaire
+dépasse un seuil donné.
+\end{remarque}
+
+\section{Implémentation en langage C}
+
+Le tri à bulles parcourt le tableau et échange deux éléments consécutifs
+lorsqu'ils sont mal ordonnés. Nous utilisons la fonction \codeinline{swap}
+pour l'échange.
+
+\begin{code}[language=C, numbers=left]{tri.c}
+#include <stdio.h>
+#include <stddef.h>
+
+static void swap(int *a, int *b)
+{
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
+void tri_bulles(int *tab, size_t n)
+{
+    for (size_t i = 0; i < n - 1; ++i) {
+        for (size_t j = 0; j < n - 1 - i; ++j) {
+            if (tab[j] > tab[j + 1]) {
+                swap(&tab[j], &tab[j + 1]);
+            }
+        }
+    }
+}
+
+int main(void)
+{
+    int tab[] = {5, 2, 9, 1, 7};
+    size_t n = sizeof(tab) / sizeof(tab[0]);
+
+    tri_bulles(tab, n);
+
+    for (size_t i = 0; i < n; ++i) {
+        printf("%d ", tab[i]);
+    }
+    printf("\n");
+    return 0;
+}
+\end{code}
+
+Compilation et exécution~:
+
+\begin{terminal}
+$ gcc -Wall -o tri tri.c
+$ ./tri
+1 2 5 7 9
+\end{terminal}
+
+\section{Requête SQL associée}
+
+\begin{code}[language=SQL]{employes.sql}
+SELECT nom, prenom, salaire
+FROM employes
+WHERE salaire > 8000
+ORDER BY salaire DESC;
+\end{code}
+
+Le résultat de la requête peut être présenté sous forme de capture d'écran
+(Figure~\ref{fig:capture}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\linewidth]{images/capture_exemple.png}
+  \caption{Exemple de résultat obtenu après exécution.}
+  \label{fig:capture}
+\end{figure}
+
+\section{Analyse et complexité}
+
+Le tri à bulles a une complexité temporelle en $O(n^2)$ dans le pire cas, ce
+qui le rend peu efficace pour de grands tableaux. La requête SQL, quant à
+elle, s'appuie sur l'opérateur de comparaison \codeinline{salaire > 8000} et
+sur la clause \codeinline{ORDER BY} pour trier le résultat.

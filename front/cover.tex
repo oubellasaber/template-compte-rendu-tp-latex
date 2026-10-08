@@ -1,0 +1,71 @@
+% =====================================================================
+%  PAGE DE GARDE DU COMPTE RENDU DE TP  (front/cover.tex)
+% =====================================================================
+\thispagestyle{empty}
+
+% --- Logo seul, centré ---
+\vspace*{-1cm}
+\begin{center}
+  \IfFileExists{\logoEcole.png}{%
+    \includegraphics[width=0.55\textwidth]{\logoEcole.png}}{%
+    \IfFileExists{\logoEcole.jpg}{%
+      \includegraphics[width=0.55\textwidth]{\logoEcole.jpg}}{%
+      \textcolor{gray}{[logo]}}}
+\end{center}
+
+% --- Nom de l'école ---
+\vspace{0.2cm}
+\begin{center}
+  {\small\ecoleNom}
+\end{center}
+
+% --- Bande bleue ---
+\vspace{0.3cm}
+\bandebleue{0.32cm}
+\vspace{0.7cm}
+
+\begin{spacing}{1.25}
+\begin{center}
+  {\fontsize{20}{24}\selectfont\bfseries
+    \MakeUppercase{Compte Rendu de Travaux Pratiques}}
+
+  \vspace{0.5cm}
+  {\bfseries Module~: «~\moduleNom~»}
+
+  \vspace{0.7cm}
+  \textcolor{couvbleu}{\rule{\linewidth}{1.2mm}}
+
+  \vspace{0.4cm}
+  {\Large\bfseries \tpNumero}
+  \vspace{0.2cm}
+
+  {\fontsize{18}{22}\selectfont\bfseries \tpTitre}
+
+  \vspace{0.4cm}
+  \textcolor{couvbleu}{\rule{\linewidth}{1.2mm}}
+\end{center}
+\end{spacing}
+
+% --- Réalisé par / Encadré par ---
+\vspace{1cm}
+\begin{spacing}{1.2}
+\noindent
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{4.5cm}X@{}}
+  Filière~:        & \filiere \\[6pt]
+  Réalisé par~:    & \etudiantNom \\[6pt]
+  Groupe~:         & \etudiantGroupe \\[6pt]
+  Encadré par~:    & \enseignantNom \\[6pt]
+  Date de remise~: & \dateRemise \\
+\end{tabularx}
+\end{spacing}
+
+% --- Année universitaire (bas de page) ---
+\vfill
+\begin{center}
+  \textbf{Année Universitaire~: \anneeUniv}
+\end{center}
+\vspace{0.35cm}
+\bandebleue{0.32cm}
+\vspace*{0.2cm}
+
+\clearpage
